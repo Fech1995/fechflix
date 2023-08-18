@@ -195,7 +195,7 @@ export class ApiService {
       case 'POST':
         if (parametri !== null) {
           console.log("PASSO DA QUI 2", url)
-          return this.http.post<IRispostaServer>(url, parametri).pipe(tap(x => console.log("SERVICE", x)))
+          return this.http.post<IRispostaServer>(url, parametri).pipe(tap(x => console.log("SERVICE", x))) 
         } else {
           const objErrore = { data: null, message: null, error: "NO_PARAMETRI" }
           const obs$ = new Observable<IRispostaServer>(subscriber => subscriber.next(objErrore))
