@@ -1,0 +1,13 @@
+<ng-container *ngIf="!(categorie.length > 0)">
+    <div class="spinner-border text-warning" role="status">
+        <span class="visually-hidden">Loading...</span>
+      </div>
+</ng-container>
+
+<ng-container *ngIf="(categorie.length > 0)">
+<ul class="row">
+    <li *ngFor="let categoria of categorie" class="col">
+        <bs-card [opzioni]="categoria"></bs-card>
+    </li>
+</ul>
+</ng-container>

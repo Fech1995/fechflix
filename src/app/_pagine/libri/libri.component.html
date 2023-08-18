@@ -1,0 +1,13 @@
+<ng-container *ngIf="!(libri.length > 0)">
+    <div class="spinner-border text-warning" role="status">
+        <span class="visually-hidden">Loading...</span>
+      </div>
+</ng-container>
+
+<ng-container *ngIf="(libri.length > 0)">
+<ul class="row">
+    <li *ngFor="let libro of libri" class="col">
+        <bs-card [opzioni]="libro"></bs-card>
+    </li>
+</ul>
+</ng-container>
