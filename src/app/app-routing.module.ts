@@ -10,6 +10,7 @@ const routes: Routes = [
   { path: 'categorie/:id', loadChildren: () => import('./_pagine/libri/libri.module').then(m => m.LibriModule) },
   { path: 'tipologie', loadChildren: () => import('./_pagine/tipologie-libri/tipologie-libri.module').then(m => m.TipologieLibriModule) },
   { path: 'accedi', loadChildren: () => import('./_pagine/accedi/accedi.module').then(m => m.AccediModule) },
+  { path: 'film', loadChildren: () => import('./_pagine/film/film.module').then(m => m.FilmModule) },
   { path: '**', loadChildren: () => import('./_pagine/not-found/not-found.module').then(m => m.NotFoundModule) }
 ];
 

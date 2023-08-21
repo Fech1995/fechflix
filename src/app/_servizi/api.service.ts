@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Categoria } from '../_type/categoria.type';
 import { Immagine } from '../_type/immagine.type';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Libro } from '../_type/libro.type';
 import { Observable, concatMap, map, of, take, tap } from 'rxjs';
 import { IRispostaServer } from '../_interfacce/IRispostaServer.interface';
@@ -14,7 +14,7 @@ import { environment } from 'src/environments/environment';
 })
 export class ApiService {
 
-  constructor(private http:HttpClient) { }
+  constructor(private http: HttpClient) { }
 
   /**
    * Funzione per chiamare l'elenco categoria dei libri
@@ -60,13 +60,13 @@ export class ApiService {
     return of(rit)
   }
 
-/**
- * La funzione ritorna i dati di un singolo libro
- * @param id identificativo del libro scelto
- * @returns Observable
- */
+  /**
+   * La funzione ritorna i dati di un singolo libro
+   * @param id identificativo del libro scelto
+   * @returns Observable
+   */
 
-  public getLibro(id:number):Observable<IRispostaServer>{
+  public getLibro(id: number): Observable<IRispostaServer> {
     const tmp = this.fakeHttpLibri().filter(x => x.id === id) //sto filtrando i libri che hanno id uguale a quella inserita nel parametro
     const rit: IRispostaServer = {
       data: tmp,
@@ -75,13 +75,13 @@ export class ApiService {
     }
     return of(rit)
   }
-/**
- * La funzione ritorna i dati di una singola categoria
- * @param id identificativo della categoria scelta
- * @returns Observable
- */
+  /**
+   * La funzione ritorna i dati di una singola categoria
+   * @param id identificativo della categoria scelta
+   * @returns Observable
+   */
 
-  public getCategoria(id:number):Observable<IRispostaServer>{
+  public getCategoria(id: number): Observable<IRispostaServer> {
     const tmp = this.fakeHttpCategorie().filter(x => x.id === id) //sto filtrando le categorie che hanno id uguale a quella inserita nel parametro
     const rit: IRispostaServer = {
       data: tmp,
@@ -186,8 +186,9 @@ export class ApiService {
   protected richiestaGenerica(risorsa: (string | number)[], tipo: ChiamataHTTP, parametri: Object | null = null): Observable<IRispostaServer> {
 
 
+
     const url = this.calcolaRisorsa(risorsa)
-    console.log("URL",url)
+    console.log("URL", url)
     switch (tipo) {
       case 'GET': console.log("PASSO DA QUI 1")
         return this.http.get<IRispostaServer>(url)
@@ -195,7 +196,7 @@ export class ApiService {
       case 'POST':
         if (parametri !== null) {
           console.log("PASSO DA QUI 2", url)
-          return this.http.post<IRispostaServer>(url, parametri).pipe(tap(x => console.log("SERVICE", x))) 
+          return this.http.post<IRispostaServer>(url, parametri).pipe(tap(x => console.log("SERVICE", x)))
         } else {
           const objErrore = { data: null, message: null, error: "NO_PARAMETRI" }
           const obs$ = new Observable<IRispostaServer>(subscriber => subscriber.next(objErrore))
@@ -218,6 +219,50 @@ export class ApiService {
         break
       default: console.log("PASSO DA QUI 3")
         return this.http.get<IRispostaServer>(url)
+        break
+    }
+  }
+
+  public richiestaGenericaProtected(risorsa: (string | number)[], tipo: ChiamataHTTP, parametri: Object | null = null,token:string): Observable<IRispostaServer> {
+
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Authorization': token
+      })
+    }
+
+    const url = this.calcolaRisorsa(risorsa)
+    console.log("URL", url)
+    switch (tipo) {
+      case 'GET': console.log("PASSO DA QUI 1")
+        return this.http.get<IRispostaServer>(url,httpOptions)
+        break
+      case 'POST':
+        if (parametri !== null) {
+          console.log("PASSO DA QUI 2", url)
+          return this.http.post<IRispostaServer>(url, parametri, httpOptions).pipe(tap(x => console.log("SERVICE", x)))
+        } else {
+          const objErrore = { data: null, message: null, error: "NO_PARAMETRI" }
+          const obs$ = new Observable<IRispostaServer>(subscriber => subscriber.next(objErrore))
+          return obs$
+        }
+
+        break
+      case 'PUT':
+        if (parametri !== null) {
+          console.log("PASSO DA QUI 4", url)
+          return this.http.put<IRispostaServer>(url, parametri, httpOptions).pipe(tap(x => console.log("SERVICE", x)))
+        } else {
+          const objErrore = { data: null, message: null, error: "NO_PARAMETRI" }
+          const obs$ = new Observable<IRispostaServer>(subscriber => subscriber.next(objErrore))
+          return obs$
+        }
+        break
+      case 'DELETE': console.log("PASSO DA QUI 5", url)
+        return this.http.delete<IRispostaServer>(url,httpOptions)
+        break
+      default: console.log("PASSO DA QUI 3")
+        return this.http.get<IRispostaServer>(url,httpOptions)
         break
     }
   }
@@ -319,5 +364,14 @@ export class ApiService {
         })
       )
     return controllo$
+  }
+
+  //Protected
+
+  public getFilm(token: string): Observable<IRispostaServer> {
+
+    const risorsa: string[] = ["film"]
+
+    return this.richiestaGenericaProtected(risorsa, "GET",null, token)
   }
 }
