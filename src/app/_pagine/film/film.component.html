@@ -1,1 +1,5 @@
-<p>film works!</p>
+<p *ngIf="attivo">film works!</p>
+<p *ngIf="!attivo">film not works! vai a 
+    <a href="javascript:void(0)" title="vai a accedi" [routerLink]="['/accedi']"
+    [routerLinkActive]="['attivo']">Accedi</a>
+</p>

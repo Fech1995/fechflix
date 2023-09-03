@@ -1,24 +1,29 @@
 <ng-container *ngIf="(auth | async)?.tk===null">
-    <div class="row form-login">
+    <div class="row justify-content-center align-items-center form-login mt-4">
         <div class="col-4">
             <form action="" name="formLogin" [formGroup]="reactiveForm" (ngSubmit)="accedi()">
-                <label for="utente"
-                    [ngClass]="{'is-invalid':reactiveForm.controls[ 'utente'].errors}">Utente</label><br>
-                <input type="text" name="utente" id="utente" formControlName="utente"
-                    [ngClass]="{'is-invalid':reactiveForm.controls['utente'].errors}"><br>
-                <label for="password"
-                    [ngClass]="{'is-invalid':reactiveForm.controls['password'].errors}">Password</label><br>
-                <input type="password" name="password" id="password" formControlName="password"
-                    [ngClass]="{'is-invalid':reactiveForm.controls['password'].errors}"><br><br>
+                <div class="mb-3">
+                    <label for="utente"
+                        [ngClass]="{'is-invalid':reactiveForm.controls[ 'utente'].errors}">Utente</label>
+                    <input type="text" name="utente" id="utente" class="form-control" formControlName="utente"
+                        [ngClass]="{'is-invalid':reactiveForm.controls['utente'].errors}">
+                </div>
+                <div class="mb-3">
+                    <label for="password"
+                        [ngClass]="{'is-invalid':reactiveForm.controls['password'].errors}">Password</label>
+                    <input type="password" name="password" id="password" class="form-control" formControlName="password"
+                        [ngClass]="{'is-invalid':reactiveForm.controls['password'].errors}">
+                </div>
+                <div class="mb-3 form-check">
+                    <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                    <label class="form-check-label" for="exampleCheck1">Check me out</label>
+                </div>
                 <button type="submit" class="btn btn-primary" [disabled]="!reactiveForm.valid">
                     Accedi
                     <div class="spinner-border text-warning" role="status" *ngIf="stoControllando">
                         <span class="visually-hidden">Loading...</span>
                     </div>
                 </button>
-                <br>
-                <div>DEBUG:</div>
-                <div>E' valido reactiveform? {{ reactiveForm.valid | json}}</div>
             </form>
         </div>
     </div>
@@ -31,4 +36,3 @@
         </div>
     </div>
 </ng-container>
-<div>Sto controllando? {{ stoControllando | json}}</div>

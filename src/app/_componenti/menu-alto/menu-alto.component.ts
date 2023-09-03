@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'menu-alto',
@@ -7,10 +8,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MenuAltoComponent implements OnInit {
 
-  constructor() { }
+
+  constructor(private router:Router) { }
 
   ngOnInit(): void {
 
+  }
+
+  logout():void{
+    localStorage.removeItem('auth');
+    this.router.navigateByUrl('/home')
   }
 
 }

@@ -1,3 +1,46 @@
-p{
-    text-align: justify;
-}
+/* Stile per l'elemento div principale con l'immagine */
+.fullscreen-image {
+    position: relative;
+    width: 100%;
+    height: 100vh; /* Imposta l'altezza al 100% del viewport */
+    overflow: hidden;
+    margin: 0;
+    padding: 0;
+  }
+  
+  /* Stile per l'immagine per coprire l'intero viewport */
+  .fullscreen-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* L'immagine copre completamente il div mantenendo le proporzioni */
+  }
+  
+  /* Stile per il testo sovrapposto */
+  .overlay-text {
+    position: absolute;
+    top: 50%; /* Posiziona il testo al centro verticalmente */
+    left: 50%; /* Posiziona il testo al centro orizzontalmente */
+    transform: translate(-50%, -50%); /* Per centrare il testo */
+    text-align: center;
+    color: white; /* Colore del testo */
+    text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.5); /* Ombra per migliorare la leggibilità */
+  }
+  
+  .overlay-text h1 {
+    font-size: 4rem; /* Dimensione del titolo */
+    margin-bottom: 20px; /* Spazio tra il titolo e il paragrafo */
+    
+  }
+  
+  .overlay-text p {
+    font-size: 2rem; /* Dimensione del paragrafo */
+  }
+  /* Aggiungi un'ombra a un bottone */
+button{
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+    color: white;
+    font-size: 1.2em;
+    background-color: #ff9900;
+    border-color: #ff9900;
+  }
+  

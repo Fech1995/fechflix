@@ -8,22 +8,28 @@ import { ApiService } from 'src/app/_servizi/api.service';
 })
 export class FilmComponent implements OnInit {
 
-  constructor(private api:ApiService) { }
+  constructor(private api: ApiService) { }
 
-  token:any = JSON.parse(localStorage.getItem('auth') as string).tk
+  token: any;
+  attivo: boolean = false
 
   ngOnInit(): void {
-    console.log("auth", this.token)
-    if (!this.token){
-      console.log("%c transazione non autorizzata","color:#ff0000", this.token)
-    } else {
+    const authData = localStorage.getItem('auth');
+    if (authData) {
+      this.token = JSON.parse(authData).tk;
+      console.log("auth", this.token);
       this.api.getFilm(this.token)
-      .subscribe({
-        next: (data) => console.log("data", data),
-        error: (err) => console.log("errore", err),
-        complete: () => console.log("%c Completato", "color:#00ff00")
-      })
+        .subscribe({
+          next: (data) => {
+            console.log("data", data)
+            this.attivo = true
+        },
+          error: (err) => console.log("errore", err),
+          complete: () => console.log("%c Completato", "color:#00ff00")
+        });
+    } else {
+      console.log("%c Transazione non autorizzata", "color:#ff0000");
     }
   }
-
 }
+

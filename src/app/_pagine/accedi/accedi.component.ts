@@ -91,7 +91,7 @@ export class AccediComponent implements OnInit, OnDestroy {
           }
           this.authService.settaObsAuth(auth)
           this.authService.scriviAuthSuLocalStorage(auth)
-          this.router.navigateByUrl('/chisiamo')
+          this.router.navigateByUrl('/film')
 
 
         } else {
