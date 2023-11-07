@@ -8,6 +8,9 @@ import { IRispostaServer } from '../_interfacce/IRispostaServer.interface';
 import { UtilityService } from './utility.service';
 import { ChiamataHTTP } from '../_type/chiamateHTTP.type';
 import { environment } from 'src/environments/environment';
+import { Film } from '../_type/film.type';
+import { Registra } from '../_type/registra.type';
+import { Contatto } from '../_type/contatto.type';
 
 @Injectable({
   providedIn: 'root'
@@ -109,9 +112,9 @@ export class ApiService {
     }
 
     const arrCat = [
-      { id: 1, nome: "Romantico", img: img1 },
-      { id: 2, nome: "Fantasy", img: img2 },
-      { id: 3, nome: "Avventura", img: img3 },
+      { id: 1, nome: "Romantico", img: img1, watch: 0 },
+      { id: 2, nome: "Fantasy", img: img2, watch: 0 },
+      { id: 3, nome: "Avventura", img: img3, watch: 0 },
     ]
     return arrCat
   }
@@ -223,7 +226,7 @@ export class ApiService {
     }
   }
 
-  public richiestaGenericaProtected(risorsa: (string | number)[], tipo: ChiamataHTTP, parametri: Object | null = null,token:string): Observable<IRispostaServer> {
+  public richiestaGenericaProtected(risorsa: (string | number)[], tipo: ChiamataHTTP, parametri: Object | null = null, token: string): Observable<IRispostaServer> {
 
     const httpOptions = {
       headers: new HttpHeaders({
@@ -235,7 +238,7 @@ export class ApiService {
     console.log("URL", url)
     switch (tipo) {
       case 'GET': console.log("PASSO DA QUI 1")
-        return this.http.get<IRispostaServer>(url,httpOptions)
+        return this.http.get<IRispostaServer>(url, httpOptions)
         break
       case 'POST':
         if (parametri !== null) {
@@ -259,63 +262,185 @@ export class ApiService {
         }
         break
       case 'DELETE': console.log("PASSO DA QUI 5", url)
-        return this.http.delete<IRispostaServer>(url,httpOptions)
+        return this.http.delete<IRispostaServer>(url, httpOptions)
         break
       default: console.log("PASSO DA QUI 3")
-        return this.http.get<IRispostaServer>(url,httpOptions)
+        return this.http.get<IRispostaServer>(url, httpOptions)
         break
     }
   }
 
   /**
-   * Funzione per chiamare elenco tipologiaIndirizzi
+   * Funzione per chiamare elenco film
    * 
+   * @param token string
    * @returns Observable 
    */
 
-  public getTipologieIndirizzi(): Observable<IRispostaServer> {
+  public getFilm(token: string): Observable<IRispostaServer> {
 
-    const risorsa: string[] = ["tipologiaIndirizzi"]
+    const risorsa: string[] = ["film"]
 
-    return this.richiestaGenerica(risorsa, "GET")
+    return this.richiestaGenericaProtected(risorsa, "GET", null, token)
+  }
+
+  public getFilmDaCategoria(idCat: number, token: string): Observable<IRispostaServer> {
+    const risorsa: (string | number)[] = ['categorie', 'film', idCat]; // Aggiorna l'array risorsa con la nuova struttura dell'URL.
+
+    // Qui, useremo la funzione richiestaGenericaProtected per effettuare la chiamata HTTP.
+    return this.richiestaGenericaProtected(risorsa, 'GET', null, token);
+  }
+  /**
+ * Funzione per chiamare elenco contatti
+ * 
+ * @param token string
+ * @returns Observable 
+ */
+  public getContatti(token: string): Observable<IRispostaServer> {
+
+    const risorsa: string[] = ["contatti"]
+
+    return this.richiestaGenericaProtected(risorsa, "GET", null, token)
   }
 
   /**
-   * Funzione per chiamare la tipologiaIndirizzi
+ * Funzione per chiamare il contatto
+ * 
+ * @param id stringa che indica l'id richiesto
+ * @param token string
+ * @returns Observable 
+ */
+  public getContattoSingolo(id: string, token: string): Observable<IRispostaServer> {
+
+    const risorsa: string[] = ["contatti", id]
+
+    return this.richiestaGenericaProtected(risorsa, "GET", null, token)
+  }
+
+  /**
+* Funzione per aggiungere un nuovo contatto
+* 
+* @param parametri partial dei film
+* @param token string
+* @returns Observable 
+*/
+  public postContatto(parametri: Partial<Contatto>, token: string): Observable<IRispostaServer> {
+    const risorsa: string[] = ["contatti"]
+    return this.richiestaGenericaProtected(risorsa, "POST", parametri, token)
+  }
+
+  /**
+ * Funzione per modificare contatto
+ * 
+ * @param id number indica l'id che si intende modificare
+ * @param token string
+ * @param parametri partial dei film
+ * @returns Observable
+ */
+  public putContatto(id: string, parametri: Partial<Contatto>, token: string): Observable<IRispostaServer> {
+
+    // const idRisorsa= id + "" // si usa per trasformare un tipo number in un tipo string
+    const risorsa: string[] = ["contatti", id]
+    return this.richiestaGenericaProtected(risorsa, "PUT", parametri, token)
+  }
+
+  /**
+* 
+* Funzione per cancellare il contatto
+* 
+* @param id number indica l'id che si vuole cancellare
+* @param token string
+* @returns 
+*/
+
+  public deleteContatti(id: string, token: string): Observable<IRispostaServer> {
+
+    const risorsa: string[] = ["contatti", id]
+
+    return this.richiestaGenericaProtected(risorsa, "DELETE", null, token)
+  }
+
+
+
+  /**
+   * Funzione per chiamare il film
    * 
+   * @param id stringa che indica l'id richiesto
+   * @param token string
    * @returns Observable 
    */
+  public getFilmSingolo(id: string, token: string): Observable<IRispostaServer> {
 
-  public getTipologiaIndirizzo(id: string): Observable<IRispostaServer> {
+    const risorsa: string[] = ["film", id]
 
-    const risorsa: string[] = ["tipologiaIndirizzi", id]
-
-    return this.richiestaGenerica(risorsa, "GET")
+    return this.richiestaGenericaProtected(risorsa, "GET", null, token)
   }
 
-  // public postTipologiaIndirizzo(parametri: Partial<TipologiaIndirizzo>): Observable<IRispostaServer> {
-  //   const risorsa: string[] = ["tipologiaIndirizzi"]
-  //   return this.richiestaGenerica(risorsa, "POST", parametri)
-  // }
-
-  // public putTipologiaIndirizzo(id: number, parametri: Partial<TipologiaIndirizzo>): Observable<IRispostaServer> {
-
-  //   // const idRisorsa= id + "" // si usa per trasformare un tipo number in un tipo string
-  //   const risorsa: [string, number] = ["tipologiaIndirizzi", id]
-  //   return this.richiestaGenerica(risorsa, "PUT", parametri)
-
-  // }
-
-  public deleteTipologiaIndirizzo(id: string): Observable<IRispostaServer> {
-
-    const risorsa: string[] = ["tipologiaIndirizzi", id]
-
-    return this.richiestaGenerica(risorsa, "DELETE")
+  /**
+   * Funzione per aggiungere un nuovo film
+   * 
+   * @param parametri partial dei film
+   * @param token string
+   * @returns Observable 
+   */
+  public postFilm(parametri: Partial<Film>, token: string): Observable<IRispostaServer> {
+    const risorsa: string[] = ["film"]
+    return this.richiestaGenericaProtected(risorsa, "POST", parametri, token)
   }
+
+  /**
+   * Funzione per modificare film
+   * 
+   * @param id number indica l'id che si intende modificare
+   * @param token string
+   * @param parametri partial dei film
+   * @returns Observable
+   */
+  public putFilm(id: number, parametri: Partial<Film>, token: string): Observable<IRispostaServer> {
+
+    // const idRisorsa= id + "" // si usa per trasformare un tipo number in un tipo string
+    const risorsa: [string, number] = ["film", id]
+    return this.richiestaGenericaProtected(risorsa, "PUT", parametri, token)
+
+  }
+
+  /**
+   * 
+   * Funzione per cancellare i film
+   * 
+   * @param id number indica l'id che si vuole cancellare
+   * @param token string
+   * @returns 
+   */
+
+  public deleteFilm(id: string, token: string): Observable<IRispostaServer> {
+
+    const risorsa: string[] = ["film", id]
+
+    return this.richiestaGenericaProtected(risorsa, "DELETE", null, token)
+  }
+
+  /**
+   * Funzione per uploadare
+   * 
+   * @param dati formData entranti
+   * @returns Observable
+   */
 
   public upload(dati: FormData): Observable<IRispostaServer> {
     const risorsa: string[] = ["upload"]
     return this.richiestaGenerica(risorsa, "POST", dati)
+  }
+  /**
+   * Funzione per registrare
+   * 
+   * @param dati formData entranti
+   * @returns Observable
+   */
+  public registrazione(parametri: Partial<Registra>): Observable<IRispostaServer> {
+    console.log(parametri)
+    const risorsa: string[] = ["registrazione"]
+    return this.richiestaGenerica(risorsa, "POST", parametri)
   }
 
   /**
@@ -366,12 +491,53 @@ export class ApiService {
     return controllo$
   }
 
-  //Protected
+  public getCategorieVere(token: string): Observable<IRispostaServer> {
 
-  public getFilm(token: string): Observable<IRispostaServer> {
+    const risorsa: string[] = ["categorie"]
 
-    const risorsa: string[] = ["film"]
-
-    return this.richiestaGenericaProtected(risorsa, "GET",null, token)
+    return this.richiestaGenericaProtected(risorsa, "GET", null, token)
   }
+
+  public getCategoriaVera(id: string, token: string): Observable<IRispostaServer> {
+
+    const risorsa: string[] = ["categorie", id]
+
+    return this.richiestaGenericaProtected(risorsa, "GET", null, token)
+  }
+
+  /**
+ * Funzione per chiamare elenco film
+ * 
+ * @param token string
+ * @returns Observable 
+ */
+
+  public getSerie(token: string): Observable<IRispostaServer> {
+
+    const risorsa: string[] = ["serieTv"]
+
+    return this.richiestaGenericaProtected(risorsa, "GET", null, token)
+  }
+
+  public getSerieDaCategoria(idCat: number, token: string): Observable<IRispostaServer> {
+    const risorsa: (string | number)[] = ['categorie', 'serieTv', idCat]; // Aggiorna l'array risorsa con la nuova struttura dell'URL.
+
+    // Qui, useremo la funzione richiestaGenericaProtected per effettuare la chiamata HTTP.
+    return this.richiestaGenericaProtected(risorsa, 'GET', null, token);
+  }
+
+  public getEpisodi(idSerie: number, token: string): Observable<IRispostaServer> {
+    const risorsa: (string | number)[] = ['serieTv', idSerie, 'episodi']; // Aggiorna l'array risorsa con la nuova struttura dell'URL.
+
+    // Qui, useremo la funzione richiestaGenericaProtected per effettuare la chiamata HTTP.
+    return this.richiestaGenericaProtected(risorsa, 'GET', null, token);
+  }
+
+  public getEpisodio(idSerie: string, token: string, idEpisodio: string): Observable<IRispostaServer> {
+
+    const risorsa: string[] = ['serieTv', idSerie, 'episodi', idEpisodio]
+
+    return this.richiestaGenericaProtected(risorsa, "GET", null, token)
+  }
+
 }

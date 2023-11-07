@@ -2,3 +2,22 @@
 
 /* Importing Bootstrap SCSS file. */
 @import 'bootstrap/scss/bootstrap';
+
+
+.text-warning {
+    color: #ff9900 !important;
+  }
+
+.btn-primary{
+    background-color: #ff9900;
+    border-color:#ff9900;
+}
+
+.bg-warning{
+    background-color: #ff9900 !important;
+}
+
+a{
+    color: #ff9900;
+    text-decoration: none;
+}

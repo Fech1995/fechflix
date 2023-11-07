@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Card } from 'src/app/_type/card.type';
+import { CardVera } from 'src/app/_type/cardVera.type';
 
 @Component({
   selector: 'bs-card',
@@ -9,7 +9,7 @@ import { Card } from 'src/app/_type/card.type';
 export class BsCardComponent implements OnInit {
 
 
-  @Input ('opzioni') card!: Card
+  @Input ('opzioni') card!: CardVera
 
   constructor() { }
 

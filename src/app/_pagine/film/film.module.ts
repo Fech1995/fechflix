@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common';
 
 import { FilmRoutingModule } from './film-routing.module';
 import { FilmComponent } from './film.component';
+import { FormsModule } from '@angular/forms';
+import { UikitModule } from 'src/app/_condivisi/uikit/uikit.module';
 
 
 @NgModule({
@@ -11,7 +13,9 @@ import { FilmComponent } from './film.component';
   ],
   imports: [
     CommonModule,
-    FilmRoutingModule
+    FilmRoutingModule,
+    FormsModule,
+    UikitModule
   ]
 })
 export class FilmModule { }

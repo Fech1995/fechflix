@@ -3,5 +3,6 @@
     <div class="overlay-text text-center text-white">
         <h1 class="font-weight-bold">BENVENUTO</h1>
         <p class="font-weight-bold">I migliori film e serie Tv usciti fino ad oggi</p>
+        <button *ngIf="valido" class="nav-item" [routerLinkActive]="['attivo']" [routerLink]="['../categorie']" type="button" class="btn btn-primary mt-4">Guarda Ora</button>
     </div>
 </div>

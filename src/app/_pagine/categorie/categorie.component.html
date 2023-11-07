@@ -1,13 +1,36 @@
-<ng-container *ngIf="!(categorie.length > 0)">
-    <div class="spinner-border text-warning" role="status">
-        <span class="visually-hidden">Loading...</span>
-      </div>
-</ng-container>
+<h1 class="text-center text-white">Categorie</h1>
+<ng-container *ngIf="valido">
+  <div *ngIf="!(categorie.length > 0)" class="d-flex justify-content-center align-items-center vh-100">
+    <div class="spinner-border text-warning" role="status" style="width: 4rem; height: 4rem;">
+      <span class="visually-hidden">Loading...</span>
+    </div>
+  </div>
 
-<ng-container *ngIf="(categorie.length > 0)">
-<ul class="row">
-    <li *ngFor="let categoria of categorie" class="col">
+  <div *ngIf="(categorie.length > 0)">
+    <ul class="row">
+      <li *ngFor="let categoria of categorie" class="col-12 col-sm-6 col-md-4 col-lg-3 mb-4 mt-4 card-custom">
         <bs-card [opzioni]="categoria"></bs-card>
-    </li>
-</ul>
+      </li>
+    </ul>
+  </div>
+</ng-container>
+<ng-container *ngIf="!valido">
+  <div class="background-image">
+    <div class="d-flex justify-content-center align-items-center vh-100 primo">
+      <div class="container text-center text-white">
+        <h1 class="display-4">Accesso Negato</h1>
+        <p class="lead text-center">Non hai l'autorizzazione per accedere a questa risorsa.</p>
+        <div class="d-flex justify-content-evenly">
+          <button [routerLinkActive]="['attivo']" [routerLink]="['/registrazione']" type="button"
+            class="btn btn-primary btn-lg d-none d-lg-block">Registrati</button>
+          <button [routerLinkActive]="['attivo']" [routerLink]="['/accedi']" type="button"
+            class="btn btn-primary btn-lg d-none d-lg-block">Accedi</button>
+          <button [routerLinkActive]="['attivo']" [routerLink]="['/registrazione']" type="button"
+            class="btn btn-primary d-lg-none">Registrati</button>
+          <button [routerLinkActive]="['attivo']" [routerLink]="['/accedi']" type="button"
+            class="btn btn-primary d-lg-none">Accedi</button>
+        </div>
+      </div>
+    </div>
+  </div>
 </ng-container>

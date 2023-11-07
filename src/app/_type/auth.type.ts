@@ -5,5 +5,5 @@ export type Auth={
     idGruppo:number | null,
     idStato:number | null,
     abilita:number[] | null,
-    idUtente:number | null
+    idContatto:number | null
 }

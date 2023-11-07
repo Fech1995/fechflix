@@ -7,3 +7,12 @@
     color: #ff9900;
     font-weight: bold !important;
 }
+
+.riflesso {
+    transform: scaleY(-1);
+    display: block;
+    text-align: center;
+    margin-top: -8px; /* Regola questa cifra per l'effetto visivo desiderato */
+    opacity: 0.5; /* Puoi regolare l'opacità a tuo piacimento */
+}
+

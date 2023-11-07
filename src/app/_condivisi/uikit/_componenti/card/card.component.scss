@@ -1,0 +1,107 @@
+/* CSS personalizzato per centrare il testo all'interno di card-link */
+.card-link {
+    display: flex;
+    align-items: center;
+    /* Centra verticalmente */
+    justify-content: center;
+    /* Centra orizzontalmente */
+    text-align: center;
+    /* Allinea il testo al centro */
+    width: 100%;
+
+}
+
+.card{
+    margin: 0;
+    padding: 0 !important;
+}
+
+
+h5 {
+    text-align: center;
+}
+
+p.card-text{
+    margin-bottom: 0.6rem;
+}
+
+.card-fixed-height {
+    height: 350px;
+    /* Imposta l'altezza fissa desiderata per le card */
+    overflow-y: hidden;
+    /* Nasconde il contenuto che supera l'altezza */
+}
+
+.card-fixed-height .card-body {
+    max-height: 100%;
+    /* Imposta l'altezza massima per il corpo della card */
+    overflow-y: scroll;
+    /* Nasconde il contenuto che supera l'altezza del corpo */
+
+    scrollbar-width: thin;
+    /* Nasconde la scrollbar se possibile (funziona su alcuni browser) */
+    scrollbar-color: transparent transparent;
+    /* Nasconde il colore della scrollbar (funziona su alcuni browser) */
+}
+
+/* Nascondi completamente la scrollbar in altri browser */
+.card-fixed-height .card-body::-webkit-scrollbar {
+    width: 0.2rem;
+    /* Imposta la larghezza della scrollbar su 0.2rem (modificabile) */
+}
+
+.card-fixed-height .card-body::-webkit-scrollbar-thumb {
+    background-color: transparent;
+    /* Nascondi il colore della thumb della scrollbar */
+}
+
+.card-title {
+    white-space: nowrap;
+    /* Impedisce al testo di andare a capo */
+    overflow: hidden;
+    /* Nasconde il testo che supera la larghezza dell'elemento */
+    text-overflow: ellipsis;
+    /* Aggiunge "..." alla fine del testo troncato */
+    transition: max-width 0.3s;
+    /* Aggiungi una transizione per un effetto più fluido */
+}
+
+.card-title:hover {
+    white-space: normal;
+    /* Permette al testo di andare a capo se supera la larghezza */
+    max-width: none;
+    /* Rimuove il limite di larghezza al passaggio del mouse */
+}
+
+.card-text {
+    white-space: nowrap;
+    /* Impedisce al testo di andare a capo */
+    overflow: hidden;
+    /* Nasconde il testo che supera la larghezza dell'elemento */
+    text-overflow: ellipsis;
+    /* Aggiunge "..." alla fine del testo troncato */
+    transition: max-width 0.3s;
+    /* Aggiungi una transizione per un effetto più fluido */
+}
+
+.card-text:hover {
+    white-space: normal;
+    /* Permette al testo di andare a capo se supera la larghezza */
+    max-width: none;
+    /* Rimuove il limite di larghezza al passaggio del mouse */
+}
+/* CSS per impostare l'altezza fissa delle immagini */
+.fixed-height-image {
+    height: 65%;
+    /* Imposta l'altezza fissa desiderata per le immagini */
+    width: auto;
+    /* Imposta la larghezza automaticamente per mantenere le proporzioni originali */
+    object-fit: cover;
+    /* Scala e taglia l'immagine per adattarla all'altezza specificata */
+}
+
+.card-body{
+    padding: 4px !important;
+    margin: 0;
+    background-color: #F5F5F5;
+}

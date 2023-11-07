@@ -1,0 +1,115 @@
+<div class="container pt-4">
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            <form class="row g-3" name="formLogin" [formGroup]="reactiveForm" (ngSubmit)="registra()">
+                <div class="col-md-6">
+                    <label for="nome" class="form-label"
+                        [ngClass]="{'is-invalid':reactiveForm.controls['nome'].errors}">Nome</label>
+                    <input type="text" class="form-control" id="nome" placeholder="es. Mario" name="nome"
+                        [ngClass]="{'is-invalid':reactiveForm.controls['nome'].errors}" formControlName="nome">
+                </div>
+
+                <div class="col-md-6">
+                    <label for="cognome" class="form-label"
+                        [ngClass]="{'is-invalid':reactiveForm.controls['cognome'].errors}">cognome</label>
+                    <input type="text" class="form-control" id="cognome" placeholder="es. Rossi" name="cognome"
+                        [ngClass]="{'is-invalid':reactiveForm.controls['cognome'].errors}"formControlName="cognome">
+                </div>
+
+                <div class="col-md-6">
+                    <label for="cittadinanza" class="form-label"
+                        [ngClass]="{'is-invalid':reactiveForm.controls['cittadinanza'].errors}">cittadinanza</label>
+                    <input type="text" class="form-control" id="cittadinanza" placeholder="es. Italiana"
+                        name="cittadinanza" [ngClass]="{'is-invalid':reactiveForm.controls['cittadinanza'].errors}" formControlName="cittadinanza">
+                </div>
+
+                <div class="col-md-2">
+                    <label for="sesso" class="form-label"
+                        [ngClass]="{'is-invalid':reactiveForm.controls[ 'sesso'].errors}">Sesso</label>
+                    <select name="sesso" id="sesso" class="form-select"
+                        [ngClass]="{'is-invalid':reactiveForm.controls['sesso'].errors}" formControlName="sesso">
+                        <option selected>Scegli</option>
+                        <option value="0">Maschio</option>
+                        <option value="1">Femmina</option>
+                    </select>
+                </div>
+                <div class="col-md-4">
+                    <label for="codiceFiscale" class="form-label"
+                        [ngClass]="{'is-invalid':reactiveForm.controls['codiceFiscale'].errors}">codiceFiscale</label>
+                    <input type="text" class="form-control" id="codiceFiscale" name="codiceFiscale"
+                        [ngClass]="{'is-invalid':reactiveForm.controls['codiceFiscale'].errors}" formControlName="codiceFiscale">
+                </div>
+                <div class="col-md-4">
+                    <label for="user" class="form-label"
+                        [ngClass]="{'is-invalid':reactiveForm.controls['user'].errors}">Email</label>
+                    <input type="email" class="form-control" id="user" placeholder="es. mario.rossi@hotmail.it" name="user"
+                        [ngClass]="{'is-invalid':reactiveForm.controls['user'].errors}" formControlName="user">
+                </div>
+                <div class="col-md-4">
+                    <label for="psw" class="form-label"
+                        [ngClass]="{'is-invalid':reactiveForm.controls['psw'].errors}">password</label>
+                    <input type="password" class="form-control" id="psw" name="psw"
+                        [ngClass]="{'is-invalid':reactiveForm.controls['psw'].errors}" formControlName="psw">
+                </div>
+                <div class="col-md-4">
+                    <label for="confermaPassword" class="form-label"
+                        [ngClass]="{'is-invalid':reactiveForm.controls['confermaPassword'].errors}">confermaPassword</label>
+                    <input type="password" class="form-control" id="confermaPassword"
+                        name="confermaPassword"
+                        [ngClass]="{'is-invalid':reactiveForm.controls['confermaPassword'].errors}" formControlName="confermaPassword">
+                </div>
+                <div class="col-md-2">
+                    <label for="cittaNascita" class="form-label"
+                        [ngClass]="{'is-invalid':reactiveForm.controls['cittaNascita'].errors}">cittaNascita</label>
+                    <input type="text" class="form-control" id="cittaNascita" placeholder="es. Anzola"
+                        name="cittaNascita" [ngClass]="{'is-invalid':reactiveForm.controls['cittaNascita'].errors}" formControlName="cittaNascita">
+                </div>
+                <div class="col-md-6">
+                    <label for="provinciaNascita" class="form-label"
+                        [ngClass]="{'is-invalid':reactiveForm.controls['provinciaNascita'].errors}">provinciaNascita</label>
+                    <input type="text" class="form-control" id="provinciaNascita" placeholder="es. Bologna" name="provinciaNascita"
+                        [ngClass]="{'is-invalid':reactiveForm.controls['provinciaNascita'].errors}" formControlName="provinciaNascita">
+                </div>
+                <div class="col-md-4">
+                    <label for="dataNascita" class="form-label"
+                        [ngClass]="{'is-invalid':reactiveForm.controls['dataNascita'].errors}">dataNascita</label>
+                    <input type="date" class="form-control" id="dataNascita" name="dataNascita"
+                        [ngClass]="{'is-invalid':reactiveForm.controls['dataNascita'].errors}" formControlName="dataNascita">
+                </div>
+                <div class="col-12">
+                    <label for="idNazione" class="form-label"
+                        [ngClass]="{'is-invalid':reactiveForm.controls[ 'idNazione'].errors}">Seleziona nazione in cui
+                        ti trovi</label>
+                    <select name="idNazione" id="idNazione" class="form-select"
+                        [ngClass]="{'is-invalid':reactiveForm.controls['idNazione'].errors}" formControlName="idNazione">
+                        <option selected>Scegli</option>
+                        <option value="1">Italia</option>
+                        <option value="2">Altro</option>
+                    </select>
+                </div>
+                <div class="col-12">
+                    <div class="form-check">
+                        <input name="gridCheck" class="form-check-input" type="checkbox" id="gridCheck"
+                            [ngClass]="{'is-invalid':reactiveForm.controls[ 'gridCheck'].errors}" formControlName="gridCheck">
+                        <label class="form-check-label" for="gridCheck"
+                            [ngClass]="{'is-invalid':reactiveForm.controls['gridCheck'].errors}">
+                            Acconsento al trattamento dei miei dati personali per le finalità indicate nell'informativa
+                            sulla
+                            privacy. <br>
+
+                            Ho letto e accetto i termini e le condizioni d'uso del servizio.
+
+                        </label>
+                    </div>
+                </div>
+                <div class="col-12">
+                    <button type="submit" class="btn btn-primary" [disabled]="!reactiveForm.valid">Registrati</button>
+                </div>
+                <div class="col-12">
+                    <label for="idStato" class="form-label"></label>
+                    <input name="idStato" type="hidden" class="form-control" id="idStato" value="1" formControlName="idStato">
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

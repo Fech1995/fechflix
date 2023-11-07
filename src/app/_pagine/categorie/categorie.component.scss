@@ -1,13 +1,229 @@
-p{
+p {
     text-align: justify;
 }
 
-ul{
+ul {
     list-style: none;
     padding: 0;
     margin: 0;
 }
 
-li{
+li {
     list-style: none;
+}
+
+h1.text-center{
+    font-size: 36px;
+}
+
+.card-custom {
+    height: 100%;
+}
+
+.background-image {
+    background-image: url('../../../assets/immagini/sfondo2.jpg');
+    /* Sostituisci 'path/immagine.jpg' con il percorso dell'immagine di sfondo desiderata */
+    background-size: cover;
+    /* Regola per adattare l'immagine alle dimensioni del contenitore */
+    background-position: center center;
+    /* Regola per centrare l'immagine all'interno del contenitore */
+}
+
+.primo {
+    /* Altre regole CSS per personalizzare il comportamento dell'immagine di sfondo, ad esempio il colore del testo */
+    position: relative;
+    /* Per consentire il posizionamento dell'elemento pseudo */
+}
+
+.primo::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.3);
+    /* Opacità per l'immagine di sfondo */
+    z-index: 1;
+    /* Posiziona l'elemento pseudo sopra l'immagine di sfondo */
+}
+
+
+.container {
+    background-color: rgba(0, 0, 0, 0.3);
+    /* Imposta l'opacità solo sullo sfondo del container */
+    color: white;
+    /* Cambia il colore del testo per renderlo visibile */
+    padding: 20px;
+    /* Aggiunge spazio intorno al testo per una migliore leggibilità */
+    position: relative;
+    /* Per consentire il posizionamento sopra l'elemento pseudo */
+    z-index: 2;
+    /* Posiziona il contenuto sopra l'elemento pseudo */
+    text-align: center;
+    /* Centra il contenuto orizzontalmente */
+}
+
+.container button {
+    display: block;
+    /* Fa apparire il bottone su una nuova riga */
+    margin: 10px auto;
+    /* Centra verticalmente il bottone e crea spazio attorno ad esso */
+}
+
+.container h1 {
+    /* Aumenta la dimensione del titolo */
+    font-size: 36px;
+    /* Puoi regolare la dimensione del titolo a tuo piacimento */
+}
+
+.container p {
+    /* Aumenta la dimensione del testo del paragrafo */
+    font-size: 18px;
+    /* Puoi regolare la dimensione del testo del paragrafo a tuo piacimento */
+}
+
+/* Stili per schermi di piccole dimensioni (da 301px a 479.98px) */
+@media (max-width: 301px) {
+    .container {
+        font-size: 10px;
+        /* Regola la dimensione del testo per schermi di piccole dimensioni fino a 300px */
+    }
+
+    h1 {
+        font-size: 1.5em;
+        /* Esempio di dimensione relativa per l'h1 rispetto al container */
+    }
+
+    p {
+        font-size: 1em;
+        /* Esempio di dimensione relativa per il paragrafo rispetto al container */
+    }
+}
+
+/* Stili per schermi di piccole dimensioni (da 301px a 479.98px) */
+@media (min-width: 301px) and (max-width: 479.98px) {
+    .container {
+        font-size: 12px;
+        /* Regola la dimensione del testo per schermi di piccole dimensioni fino a 300px */
+    }
+
+    h1 {
+        font-size: 1.5em;
+        /* Esempio di dimensione relativa per l'h1 rispetto al container */
+    }
+
+    p {
+        font-size: 1em;
+        /* Esempio di dimensione relativa per il paragrafo rispetto al container */
+    }
+}
+
+/* Stili per schermi molto piccoli (ad esempio telefoni cellulari in modalità portrait) */
+@media (max-width: 479.98px) {
+    .container {
+        font-size: 14px;
+        /* Regola la dimensione del testo per schermi molto piccoli */
+    }
+
+    h1 {
+        font-size: 1.5em;
+        /* Esempio di dimensione relativa per l'h1 rispetto al container */
+    }
+
+    p {
+        font-size: 1em;
+        /* Esempio di dimensione relativa per il paragrafo rispetto al container */
+    }
+}
+
+/* Stili per schermi di piccole dimensioni (da 480px a 767.98px) */
+@media (min-width: 480px) and (max-width: 767.98px) {
+    .container {
+        font-size: 16px;
+        /* Regola la dimensione del testo per schermi di piccole dimensioni */
+    }
+
+    h1 {
+        font-size: 1.5em;
+        /* Esempio di dimensione relativa per l'h1 rispetto al container */
+    }
+
+    p {
+        font-size: 1em;
+        /* Esempio di dimensione relativa per il paragrafo rispetto al container */
+    }
+}
+
+/* Stili per schermi di dimensioni medie (da 768px a 991.98px) */
+@media (min-width: 768px) and (max-width: 991.98px) {
+    .container {
+        font-size: 18px;
+        /* Regola la dimensione del testo per schermi medi */
+    }
+
+    h1 {
+        font-size: 1.5em;
+        /* Esempio di dimensione relativa per l'h1 rispetto al container */
+    }
+
+    p {
+        font-size: 1em;
+        /* Esempio di dimensione relativa per il paragrafo rispetto al container */
+    }
+}
+
+/* Stili per schermi di grandi dimensioni (da 992px a 1199.98px) */
+@media (min-width: 992px) and (max-width: 1199.98px) {
+    .container {
+        font-size: 20px;
+        /* Regola la dimensione del testo per schermi di grandi dimensioni */
+    }
+
+    h1 {
+        font-size: 1.5em;
+        /* Esempio di dimensione relativa per l'h1 rispetto al container */
+    }
+
+    p {
+        font-size: 1em;
+        /* Esempio di dimensione relativa per il paragrafo rispetto al container */
+    }
+}
+
+/* Stili per schermi molto grandi (ad esempio desktop largo) */
+@media (min-width: 1200px) {
+    .container {
+        font-size: 24px;
+        /* Regola la dimensione del testo per schermi molto grandi */
+    }
+
+    h1 {
+        font-size: 1.5em;
+        /* Esempio di dimensione relativa per l'h1 rispetto al container */
+    }
+
+    p {
+        font-size: 1em;
+        /* Esempio di dimensione relativa per il paragrafo rispetto al container */
+    }
+}
+
+
+/* Stili per schermi di grandi dimensioni (ad esempio desktop) */
+@media (min-width: 992px) {
+    .container {
+        font-size: 24px;
+        /* Regola la dimensione del testo per schermi grandi */
+    }
+
+    h1 {
+        font-size: 1.5em;
+        /* Esempio di dimensione relativa per l'h1 rispetto al container */
+    }
+
+    p {
+        font-size: 1em;
+        /* Esempio di dimensione relativa per il paragrafo rispetto al container */
+    }
 }

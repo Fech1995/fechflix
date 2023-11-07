@@ -1,0 +1,37 @@
+<!-- <div class="card card-fixed-height">
+  <img *ngIf="card.srcImmagine" [src]="card.srcImmagine" class="card-img-top fixed-height-image"
+    alt="Visualizza immagine">
+  <div class="card-body">
+    <h5 *ngIf="card.titolo" class="card-title fs-5">{{ card.titolo }}</h5>
+    <p class="card-text fs-6">{{ card.testo }}</p>
+    <div class="row">
+      <div class="col-12 bottone">
+        <ng-container *ngIf="card.bottone">
+          <a *ngIf="card.bottone.emitId && card.bottone.emitId > 0 && !card.bottone.link" href="javascript:void(0);"
+            title="{{ card.bottone.title }}" class="btn btn-primary card-link"
+            (click)="clickButton(card.bottone.emitId)">{{ card.bottone.testo }}</a>
+
+          <a *ngIf="card.bottone.link" href="javascript:void(0);" title="{{ card.bottone.title }}"
+            class="btn btn-primary card-link" [routerLink]="[card.bottone.link]">{{ card.bottone.testo }}</a>
+        </ng-container>
+      </div>
+    </div>
+  </div>
+</div> -->
+
+<div class="card card-fixed-height">
+  <img *ngIf="card.srcImmagine" [src]="card.srcImmagine" class="card-img-top fixed-height-image" alt="Visualizza immagine">
+  <div class="card-body">
+    <h5 *ngIf="card.titolo" class="card-title text-center">{{ card.titolo }}</h5>
+    <p class="text-center card-text">{{ card.testo }}</p>
+    <div class="text-center">
+      <ng-container *ngIf="card.bottone">
+        <a *ngIf="card.bottone.emitId && card.bottone.emitId > 0 && !card.bottone.link"
+          href="javascript:void(0);" title="{{ card.bottone.title }}" class="btn btn-primary card-link"
+          (click)="clickButton(card.bottone.emitId)">{{ card.bottone.testo }}</a>
+        <a *ngIf="card.bottone.link" href="javascript:void(0);" title="{{ card.bottone.title }}"
+          class="btn btn-primary card-link mx-auto w-75" [routerLink]="[card.bottone.link]">{{ card.bottone.testo }}</a>
+      </ng-container>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,147 @@
+<ng-container *ngIf="attivo">
+    <ng-container *ngIf="risorsa">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-8">
+                    <h1 class="text-center">Area Personale</h1>
+
+                    <form [formGroup]="reactiveForm" (ngSubmit)="inviaReact()">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label for="idContattoReact">ID Contatto</label>
+                                    <input type="text" id="idContattoReact" class="form-control"
+                                        formControlName="idContattoReact">
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label for="idStatoReact">ID Stato</label>
+                                    <input type="text" id="idStatoReact" class="form-control"
+                                        formControlName="idStatoReact">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label for="nomeReact">Nome</label>
+                                    <input type="text" id="nomeReact" class="form-control" formControlName="nomeReact">
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label for="cognomeReact">Cognome</label>
+                                    <input type="text" id="cognomeReact" class="form-control"
+                                        formControlName="cognomeReact">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label for="sessoReact">Sesso</label>
+                                    <input type="number" id="sessoReact" class="form-control"
+                                        formControlName="sessoReact">
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label for="codiceFiscaleReact">Codice Fiscale</label>
+                                    <input type="text" id="codiceFiscaleReact" class="form-control"
+                                        formControlName="codiceFiscaleReact">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label for="partitaIvaReact">Partita Iva</label>
+                                    <input type="text" id="partitaIvaReact" class="form-control"
+                                        formControlName="partitaIvaReact">
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label for="cittadinanzaReact">Cittadinanza</label>
+                                    <input type="text" id="cittadinanzaReact" class="form-control"
+                                        formControlName="cittadinanzaReact">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label for="idNazioneReact">ID Nazione</label>
+                                    <input type="number" id="idNazioneReact" class="form-control"
+                                        formControlName="idNazioneReact">
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label for="cittaNascitaReact">Città di Nascita</label>
+                                    <input type="text" id="cittaNascitaReact" class="form-control"
+                                        formControlName="cittaNascitaReact">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label for="provinciaNascitaReact">Provincia di Nascita</label>
+                                    <input type="text" id="provinciaNascitaReact" class="form-control"
+                                        formControlName="provinciaNascitaReact">
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label for="dataNascitaReact">Data di Nascita</label>
+                                    <input type="date" id="dataNascitaReact" class="form-control"
+                                        formControlName="dataNascitaReact">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="d-flex justify-content-center mt-4">
+                            <!-- Aggiunta delle classi per centrare il bottone e il margine superiore -->
+                            <button type="submit" class="btn btn-primary w-25">Salva</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </ng-container>
+
+    <ng-container *ngIf="!risorsa">
+        <div class="d-flex justify-content-center align-items-center vh-100">
+            <div class="spinner-border text-warning" role="status" style="width: 4rem; height: 4rem;">
+                <span class="visually-hidden">Loading...</span>
+            </div>
+        </div>
+    </ng-container>
+</ng-container>
+
+<ng-container *ngIf="!attivo">
+    <div class="background-image">
+        <div class="d-flex justify-content-center align-items-center vh-100 primo">
+            <div class="container text-center text-white">
+                <h1 class="display-4">Accesso Negato</h1>
+                <p class="lead text-center">Non hai l'autorizzazione per accedere a questa risorsa.</p>
+                <div class="d-flex justify-content-evenly">
+                    <button [routerLinkActive]="['attivo']" [routerLink]="['/registrazione']" type="button"
+                        class="btn btn-primary btn-lg d-none d-lg-block">Registrati</button>
+                    <button [routerLinkActive]="['attivo']" [routerLink]="['/accedi']" type="button"
+                        class="btn btn-primary btn-lg d-none d-lg-block">Accedi</button>
+                    <button [routerLinkActive]="['attivo']" [routerLink]="['/registrazione']" type="button"
+                        class="btn btn-primary d-lg-none">Registrati</button>
+                    <button [routerLinkActive]="['attivo']" [routerLink]="['/accedi']" type="button"
+                        class="btn btn-primary d-lg-none">Accedi</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</ng-container>

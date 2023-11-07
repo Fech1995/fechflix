@@ -1,10 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable, delay } from 'rxjs';
+import { Observable, delay, map } from 'rxjs';
 import { IRispostaServer } from 'src/app/_interfacce/IRispostaServer.interface';
 import { ApiService } from 'src/app/_servizi/api.service';
 import { Bottone } from 'src/app/_type/bottone.type';
-import { Card } from 'src/app/_type/card.type';
-import { Immagine } from 'src/app/_type/immagine.type';
+import { CardVera } from 'src/app/_type/cardVera.type';
 
 @Component({
   selector: 'categorie',
@@ -13,17 +12,28 @@ import { Immagine } from 'src/app/_type/immagine.type';
 })
 export class CategorieComponent implements OnInit {
 
-  categorie: Card[] = []
-  cat$: Observable<IRispostaServer>
+  categorie: CardVera[] = []
+  cat$!: Observable<IRispostaServer>
+  token: any
+  authData = localStorage.getItem('auth')
+  valido:boolean = false
 
   constructor(private api: ApiService) {
-    this.cat$ = this.api.getCategorie()
+    if (this.authData) {
+      this.token = JSON.parse(this.authData).tk;
+      console.log("auth", this.token);
+      this.valido = true
+    } else {
+      console.log("%c Transazione non autorizzata", "color:#ff0000");
+    }
   }
 
   ngOnInit(): void {
-    this.cat$.pipe(
-      delay(1000)
-    ).subscribe(this.osservoCat())
+    if (this.token){
+      this.cat$ = this.api.getCategorieVere(this.token)
+      this.cat$.subscribe(this.osservoCat())
+    }
+
   }
 
   //-------------------------------------------------
@@ -36,27 +46,35 @@ export class CategorieComponent implements OnInit {
         console.log("NEXT", rit)
         const elementi = rit.data
         for (let i = 0; i < elementi.length; i++) {
-          // const tmpImg:Immagine=elementi[i].img
-          const tmpImg: Immagine = {
-            src: elementi[i].img.src,
-            alt: elementi[i].img.alt
-          }
           const bott: Bottone = {
-            testo: "Visualizza",
+            testo: "Film",
             title: "Visualizza " + elementi[i].nome,
             icona: null,
             tipo: "button",
             emitId: null,
-            link: "/categorie/" + elementi[i].id
-          }
-          const card: Card = {
-            immagine: tmpImg,
+            link: "film/" + elementi[i].idCategoria
+          };
+        
+          const bottone2: Bottone = {
+            testo: "SerieTv",
+            title: "Visualizza " + elementi[i].nome,
+            icona: null,
+            tipo: "button",
+            emitId: null,
+            link: "serieTv/" + elementi[i].idCategoria
+          };
+        
+          const card: CardVera = {
+            srcImmagine: elementi[i].srcImmagine,
             testo: '',
             titolo: elementi[i].nome,
-            bottone: bott
-          }
-          this.categorie.push(card)
+            bottone: bott,
+            bottone2: bottone2
+          };
+        
+          this.categorie.push(card);
         }
+        
       },
       error: (err: any) => { console.error("ERRORE", err) },
       complete: () => { console.log("%c Completato", "color:#00aa00") }

@@ -1,0 +1,30 @@
+/* Aggiungi questo stile per centrare il form verticalmente */
+/* Stile di base per il form */
+.custom-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    // height: 100%;
+  }
+  
+  /* Media query per dispositivi con una larghezza minima di 768px (schermo intero) */
+  @media (min-width: 768px) {
+    /* Aumenta le dimensioni del form quando la larghezza è maggiore o uguale a 768px */
+    .custom-form {
+      font-size: 24px; /* Cambia la dimensione del testo o altre dimensioni secondo necessità */
+    }
+  }
+
+.btn-primary{
+  background-color: #ff9900;
+  border-color: #ff9900;
+}
+  
+
+
+/* Aggiungi questo stile per centrare il testo del pulsante all'interno del pulsante orizzontalmente */
+.custom-button {
+    text-align: center;
+}

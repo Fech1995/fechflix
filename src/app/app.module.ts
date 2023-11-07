@@ -6,21 +6,17 @@ import { AppComponent } from './app.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { MenuAltoComponent } from './_componenti/menu-alto/menu-alto.component';
 import { PiePaginaComponent } from './_componenti/pie-pagina/pie-pagina.component';
-import { HomeModule } from './_pagine/home/home.module';
-import { CategorieModule } from './_pagine/categorie/categorie.module';
-import { ChisiamoModule } from './_pagine/chisiamo/chisiamo.module';
-import { ContattiModule } from './_pagine/contatti/contatti.module';
-import { LibriModule } from './_pagine/libri/libri.module';
 import { NotFoundModule } from './_pagine/not-found/not-found.module';
 import { HttpClientModule} from '@angular/common/http';
-import { AccediModule } from './_pagine/accedi/accedi.module';
 import { ReactiveFormsModule } from '@angular/forms';
+import { CardHeightDirective } from './_direttive/card-height.directive';
 
 @NgModule({
   declarations: [
     AppComponent,
     MenuAltoComponent,
-    PiePaginaComponent
+    PiePaginaComponent,
+    CardHeightDirective,
   ],
   imports: [
     BrowserModule,
@@ -34,7 +30,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     // AccediModule,
     NotFoundModule,
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

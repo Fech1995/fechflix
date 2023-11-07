@@ -1,38 +1,35 @@
-<ng-container *ngIf="(auth | async)?.tk===null">
-    <div class="row justify-content-center align-items-center form-login mt-4">
-        <div class="col-4">
-            <form action="" name="formLogin" [formGroup]="reactiveForm" (ngSubmit)="accedi()">
-                <div class="mb-3">
-                    <label for="utente"
-                        [ngClass]="{'is-invalid':reactiveForm.controls[ 'utente'].errors}">Utente</label>
-                    <input type="text" name="utente" id="utente" class="form-control" formControlName="utente"
-                        [ngClass]="{'is-invalid':reactiveForm.controls['utente'].errors}">
+<div class="container d-flex justify-content-center align-items-center h-100">
+    <div class="col-md-4 mt-5">
+        <form name="formLogin" [formGroup]="reactiveForm" (ngSubmit)="accedi()"
+            class="bg-dark p-4 rounded shadow-lg custom-form">
+            <h2 class="text-center text-light mb-4">Accedi</h2>
+            <div class="mb-3">
+                <label for="utente" class="form-label text-light">Utente</label>
+                <input type="text" name="utente" id="utente" class="form-control" formControlName="utente"
+                    [ngClass]="{'is-invalid': reactiveForm.controls['utente'].errors}">
+            </div>
+            <div class="mb-3">
+                <label for="password" class="form-label text-light">Password</label>
+                <input type="password" name="password" id="password" class="form-control" formControlName="password"
+                    [ngClass]="{'is-invalid': reactiveForm.controls['password'].errors}">
+            </div>
+            <div class="mb-3 form-check">
+                <input type="checkbox" class="form-check-input" id="exampleCheck1" formControlName="ricordami">
+                <label class="form-check-label text-light" for="exampleCheck1">Ricordami</label>
+            </div>
+            <button type="submit" class="btn btn-primary btn-lg d-none d-lg-block btn-block custom-button" [disabled]="!reactiveForm.valid">
+                Accedi
+                <div class="spinner-border text-warning" role="status" *ngIf="stoControllando">
+                    <span class="visually-hidden">Loading...</span>
                 </div>
-                <div class="mb-3">
-                    <label for="password"
-                        [ngClass]="{'is-invalid':reactiveForm.controls['password'].errors}">Password</label>
-                    <input type="password" name="password" id="password" class="form-control" formControlName="password"
-                        [ngClass]="{'is-invalid':reactiveForm.controls['password'].errors}">
+            </button>
+            <button type="submit" class="btn btn-primary d-lg-none d-block btn-block custom-button" [disabled]="!reactiveForm.valid">
+                Accedi
+                <div class="spinner-border text-warning" role="status" *ngIf="stoControllando">
+                    <span class="visually-hidden">Loading...</span>
                 </div>
-                <div class="mb-3 form-check">
-                    <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                    <label class="form-check-label" for="exampleCheck1">Check me out</label>
-                </div>
-                <button type="submit" class="btn btn-primary" [disabled]="!reactiveForm.valid">
-                    Accedi
-                    <div class="spinner-border text-warning" role="status" *ngIf="stoControllando">
-                        <span class="visually-hidden">Loading...</span>
-                    </div>
-                </button>
-            </form>
-        </div>
+            </button>
+            <p class="mt-2">Non hai ancora un profilo? <a [routerLinkActive]="['attivo']" [routerLink]="['../registrazione']" href="javascript:void(0)">registrati</a> ora!</p>
+        </form>
     </div>
-</ng-container>
-
-<ng-container *ngIf="(auth | async)?.tk!==null">
-    <div class="row form-login">
-        <div class="col-4">
-            Benvenuto utente
-        </div>
-    </div>
-</ng-container>
+</div>

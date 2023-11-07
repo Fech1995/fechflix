@@ -1,0 +1,58 @@
+<ng-container *ngIf="attivo">
+    <ng-container *ngIf="risorsa">
+        <div class="container">
+            <div class="row justify-content-center align-items-center">
+                <div class="col-md-8">
+
+                    <h1 class="pb-4 pt-4 text-center">{{risorsa.titolo}}</h1>
+                    <video src="{{risorsa.srcFilmato}}" controls muted loop width="100%" height="100%"></video>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <p class="text-center" style="overflow-wrap: break-word;"> <b>Descrizione:</b>
+                        {{risorsa.descrizione}}
+                    </p>
+                </div>
+                <div class="col-md-12">
+                    <p class="text-center"><b>Anno:</b> {{risorsa.anno}}</p>
+                </div>
+                <div class="col-md-12">
+                    <p class="text-center"> <b>Regista:</b> {{risorsa.regista}}</p>
+                </div>
+                <div class="col-md-12">
+                    <p class="text-center"> <b>Attori:</b> {{risorsa.attori}}</p>
+                </div>
+            </div>
+        </div>
+    </ng-container>
+    <ng-container *ngIf="!risorsa">
+        <div class="d-flex justify-content-center align-items-center vh-100">
+            <div class="spinner-border text-warning" role="status" style="width: 4rem; height: 4rem;">
+                <span class="visually-hidden">Loading...</span>
+            </div>
+        </div>
+    </ng-container>
+</ng-container>
+<ng-container *ngIf="!attivo">
+    <div class="background-image">
+        <div class="d-flex justify-content-center align-items-center vh-100 primo">
+            <div class="container text-center text-white">
+                <h1 class="display-4">Accesso Negato</h1>
+                <p class="lead text-center">Non hai l'autorizzazione per accedere a questa risorsa.</p>
+                <div class="d-flex justify-content-evenly">
+                    <button [routerLinkActive]="['attivo']" [routerLink]="['/registrazione']" type="button"
+                        class="btn btn-primary btn-lg d-none d-lg-block">Registrati</button>
+                    <button [routerLinkActive]="['attivo']" [routerLink]="['/accedi']" type="button"
+                        class="btn btn-primary btn-lg d-none d-lg-block">Accedi</button>
+                    <button [routerLinkActive]="['attivo']" [routerLink]="['/registrazione']" type="button"
+                        class="btn btn-primary d-lg-none">Registrati</button>
+                    <button [routerLinkActive]="['attivo']" [routerLink]="['/accedi']" type="button"
+                        class="btn btn-primary d-lg-none">Accedi</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</ng-container>
